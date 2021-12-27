@@ -1,0 +1,111 @@
+<ISSPECS>
+	<DESCRIPTION>
+		<TITLE>Gadget store</TITLE>
+	</DESCRIPTION>
+	<DATA>
+		<ENTITY ent_id="User">
+			<PROPERTY>id</PROPERTY>
+			<PROPERTY>email</PROPERTY>
+            <PROPERTY>password</PROPERTY>
+            <PROPERTY>role</PROPERTY>
+		</ENTITY>
+        <ENTITY ent_id="Cart">
+			<PROPERTY>id</PROPERTY>
+			<PROPERTY>userId</PROPERTY>
+		</ENTITY>
+        <ENTITY ent_id="CartGadget">
+			<PROPERTY>id</PROPERTY>
+			<PROPERTY>gadgetId</PROPERTY>
+			<PROPERTY>cartId</PROPERTY>
+		</ENTITY>
+        <ENTITY ent_id="Gadget">
+			<PROPERTY>id</PROPERTY>
+            <PROPERTY>name</PROPERTY>
+            <PROPERTY>price</PROPERTY>
+            <PROPERTY>img</PROPERTY>
+            <PROPERTY>categoryId </PROPERTY>
+            <PROPERTY>brandId</PROPERTY>
+		</ENTITY>
+        <ENTITY ent_id="GadgetProperty">
+			<PROPERTY>id</PROPERTY>
+			<PROPERTY>gadgetId</PROPERTY>
+            <PROPERTY>description</PROPERTY>
+            <PROPERTY>title</PROPERTY>
+		</ENTITY>
+        <ENTITY ent_id="Brand">
+			<PROPERTY>id</PROPERTY>
+			<PROPERTY>name</PROPERTY>
+		</ENTITY>
+        <ENTITY ent_id="Category">
+			<PROPERTY>id</PROPERTY>
+			<PROPERTY>name</PROPERTY>
+		</ENTITY>
+
+		<RELATIONSHIPS ent_ids = "User Cart">
+			<PROPERTY>ONE TO ONE</PROPERTY>
+		</RELATIONSHIPS>
+		<RELATIONSHIPS ent_ids = "CartGadget Cart">
+			<PROPERTY>ONE TO MANY</PROPERTY>
+		</RELATIONSHIPS>
+		<RELATIONSHIPS ent_ids = "CartGadget Gadget">
+			<PROPERTY>ONE TO ONE</PROPERTY>
+		</RELATIONSHIPS>
+		<RELATIONSHIPS ent_ids = "GadgetProperty Gadget">
+			<PROPERTY>ONE TO MANY</PROPERTY>
+		</RELATIONSHIPS>
+		<RELATIONSHIPS ent_ids = "Gadget Category">
+			<PROPERTY>ONE TO MANY</PROPERTY>
+		</RELATIONSHIPS>
+		<RELATIONSHIPS ent_ids = "Gadget Brand">
+			<PROPERTY>ONE TO MANY</PROPERTY>
+		</RELATIONSHIPS>
+		<RELATIONSHIPS ent_ids = "Category Brand">
+			<PROPERTY>MANY TO MANY</PROPERTY>
+		</RELATIONSHIPS>
+        <CONSTRAINT>Ограничение NOT NULL почти повсеместно</CONSTRAINT>
+	</DATA>
+	<ROLES>
+		<ROLE>
+			<TITLE>Гость</TITLE>
+			<RESPOSIBILITY>Создать аккаунт</RESPOSIBILITY>
+			<RESPOSIBILITY>Просмотр списка товаров на странице товаров</RESPOSIBILITY>
+			<RESPOSIBILITY>Просмотр товара на странице товара</RESPOSIBILITY>
+		</ROLE>
+		<ROLE>
+			<TITLE>Авторизованный пользователь</TITLE>
+			<RESPOSIBILITY>Создать аккаунт</RESPOSIBILITY>
+			<RESPOSIBILITY>Просмотр списка товаров на странице товаров</RESPOSIBILITY>
+			<RESPOSIBILITY>Просмотр товара на странице товара</RESPOSIBILITY>
+			<RESPOSIBILITY>Авторизоваться</RESPOSIBILITY>
+			<RESPOSIBILITY>Выйти из аккаунта</RESPOSIBILITY>
+			<RESPOSIBILITY>Имеет доступ к понравившемуся</RESPOSIBILITY>
+			<RESPOSIBILITY>Добавлять товары в понравившееся и удалять их от туда</RESPOSIBILITY>
+		</ROLE>
+		<ROLE>
+			<TITLE>Администратор</TITLE>
+			<RESPOSIBILITY>Создать аккаунт</RESPOSIBILITY>
+			<RESPOSIBILITY>Просмотр списка товаров на странице товаров</RESPOSIBILITY>
+			<RESPOSIBILITY>Просмотр товара на странице товара</RESPOSIBILITY>
+			<RESPOSIBILITY>Авторизоваться</RESPOSIBILITY>
+			<RESPOSIBILITY>Выйти из аккаунта</RESPOSIBILITY>
+			<RESPOSIBILITY>Имеет доступ к понравившемуся</RESPOSIBILITY>
+			<RESPOSIBILITY>Добавлять товары в понравившееся и удалять их от туда</RESPOSIBILITY>
+			<RESPOSIBILITY>Добавлять товары, категории, бренды</RESPOSIBILITY>
+		</ROLE>
+	</ROLES>
+	<TECHSPEC>
+		<DEVTOOLS>
+			<DEV>JavaScript</DEV>
+			<DEV>NodeJS</DEV>
+			<DEV>Express</DEV>
+			<DEV>ORM Sequelize</DEV>
+            <DEV>Jsonwebtoken</DEV>
+            <DEV>Bcrypt</DEV>
+
+		</DEVTOOLS>
+		<DBMS>
+			<TITLE>PostgreSQL</TITLE>
+			<REASONING>PostgreSQL - основная БД, использовалась вместе с ORM Sequelize.</REASONING>
+		</DBMS>
+	</TECHSPEC>
+</ISSPECS>
